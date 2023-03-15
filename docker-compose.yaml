@@ -1,0 +1,45 @@
+version: '3'
+services:
+  frontend:
+    container_name: camagru_front
+    build:
+      context: ./front
+      dockerfile: dockerfile
+    image: camagru_front_image
+    ports:
+      - '3000:80'
+    volumes:
+      - ./front:/app
+    networks:
+      - camagru-network
+
+  backend:
+      container_name: camagru_backend
+      build:
+          context: ./back
+          dockerfile: dockerfile
+      image: camagru_back_image
+      ports:
+          - "4000:4000"
+      volumes:
+          - ./back:/app
+      networks:
+          - camagru-network
+
+  postgres:
+    image: postgres:13-alpine
+    ports:
+      - 5432:5432
+    env_file:
+      - .env
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    networks:
+      - camagru-network
+
+volumes:
+  postgres:
+    name: postgres-volume
+
+networks:
+  camagru-network:

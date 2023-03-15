@@ -2,14 +2,11 @@ version: '3'
 services:
   frontend:
     container_name: camagru_front
-    build:
-      context: ./front
-      dockerfile: dockerfile
-    image: camagru_front_image
+    image: nginx:alpine
     ports:
       - '3000:80'
     volumes:
-      - ./front:/app
+      - ./front/src:/usr/share/nginx/html
     networks:
       - camagru-network
 

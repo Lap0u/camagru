@@ -1,24 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Camagru</title>
+  <link rel="stylesheet" href="./css/main.css">
   <link rel="stylesheet" href="./css/style.css">
   <script src="./script/main.js"></script>
 </head>
+
 <body>
   <div class="background-left"></div>
   <div class="background-right"></div>
   <div class="login-container">
-    <div class="welcome">Welcome to Camagru</div>
+    <div class="welcome">WELCOME TO CAMAGRU</div>
     <form class="forms">
-      <label for="username">Username</label>
+      <div  style ="text-align:center;">
+        <label for="username">Username</label>
+      </div>
       <input type="text" name="username" id="username" placeholder="Username" required>
-      <label for="password">Password</label>
+      <div  style ="text-align:center;">
+        <label for="password">Password</label>
+      </div>
       <input type="password" name="password" id="password" placeholder="Password" required>
     </form>
+    <div class="sign-up">Don't have an account yet? <a href="./signup.html">Sign up</a></div>
+    <div class="forgot-password">Forgot your password? <a href="./forgot_password.html">Reset</a></div>
   </div>
 </body>
+
 </html>

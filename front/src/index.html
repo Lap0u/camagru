@@ -8,7 +8,7 @@
   <title>Camagru</title>
   <link rel="stylesheet" href="./css/main.css">
   <link rel="stylesheet" href="./css/style.css">
-  <script src="./script/main.js"></script>
+  <script src="./script/main.js" defer></script>
 </head>
 
 <body>
@@ -16,15 +16,16 @@
   <div class="background-right"></div>
   <div class="login-container">
     <div class="welcome">WELCOME TO CAMAGRU</div>
-    <form class="forms">
-      <div  style ="text-align:center;">
+    <form target="_blank" class="forms" id="form-login">
+      <div style="text-align:center;">
         <label for="username">Username</label>
       </div>
       <input type="text" name="username" id="username" placeholder="Username" required>
-      <div  style ="text-align:center;">
+      <div style="text-align:center;">
         <label for="password">Password</label>
       </div>
       <input type="password" name="password" id="password" placeholder="Password" required>
+      <input type="submit" value="Enter">
     </form>
     <div class="sign-up">Don't have an account yet? <a href="./signup.html">Sign up</a></div>
     <div class="forgot-password">Forgot your password? <a href="./forgot_password.html">Reset</a></div>

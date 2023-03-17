@@ -1,9 +1,9 @@
 function checkLogin () {
-  var username = document.getElementById('username').value
-  var password = document.getElementById('password').value
+  let username = document.getElementById('username').value
+  let password = document.getElementById('password').value
 
   if (username === 'admin' && password === 'admin') {
-    window.location.href = "./camagru.html";
+    window.location.href = "./camagru.html"
     console.log('Login success')
   } else {
     alert('Login fail')

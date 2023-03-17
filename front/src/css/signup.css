@@ -1,0 +1,50 @@
+:root {
+  --main-black: #0c1f38;
+  --main-orange: #e65401;
+  --main-yellow: #fef200;
+  --main-blue: #a7e0d7;
+}
+
+.signup-form {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--main-orange);
+}
+
+.signup-form form {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.forms input {
+  margin: 1rem 0rem;
+  padding: 1rem;
+  border: none;
+  border-bottom: 1px solid var(--main-orange);
+  background-color: transparent;
+  color: var(--main-orange);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.forms button {
+  background-color: white;
+  color: var(--main-blue);
+  font-size: 1.5rem;
+  border: 2px solid var(--main-yellow);
+  border-radius: 10px;
+}
+
+.forms button:hover,
+.forms button:focus,
+.forms input:hover,
+.forms input:focus {
+  background-color: var(--main-yellow);
+  color: var(--main-blue);
+  border-radius: 10px;
+  outline: none;
+}

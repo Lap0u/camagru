@@ -11,17 +11,17 @@ services:
       - camagru-network
 
   backend:
-      container_name: camagru_backend
-      build:
-          context: ./back
-          dockerfile: dockerfile
-      image: camagru_back_image
-      ports:
-          - "4000:4000"
-      volumes:
-          - ./back:/app
-      networks:
-          - camagru-network
+    container_name: camagru_backend
+    build:
+      context: ./back
+      dockerfile: dockerfile
+    image: camagru_back_image
+    ports:
+      - '4000:4000'
+    volumes:
+      - ./back:/app
+    networks:
+      - camagru-network
 
   postgres:
     image: postgres:13-alpine

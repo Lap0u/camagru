@@ -1,31 +1,35 @@
+:root {
+  --main-black: #0c1f38;
+  --main-orange: #e65401;
+  --main-yellow: #fef200;
+  --main-blue: #a7e0d7;
+}
+
 .navbar-container {
   display: flex;
   justify-content: space-between;
+  margin: 1rem;
+  margin-top: 2rem;
   background-color: white;
-  padding-top: 1rem;
 }
 
-.home img {
+.insta {
   margin-left: 1rem;
-  width: 9%;
 }
 
 .nav-right-flex {
   display: flex;
-  justify-content: center;
-  width: 20%;
+  justify-content: space-between;
+  width: 10%;
   margin-left: auto;
   margin-right: 1rem;
 }
 
-.account img {
-  width: 30%;
+.navbar-container i {
+  line-height: 2.2rem;
 }
 
-.gallery img {
-  width: 160%;
-}
-
-.logout img {
-  width: 100%;
+.navbar-container a:hover,
+.navbar-container a:focus {
+  color: var(--main-orange);
 }

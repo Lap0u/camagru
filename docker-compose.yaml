@@ -2,6 +2,8 @@ version: '3'
 services:
   frontend:
     container_name: camagru_front
+    env_file:
+      - .env
     image: nginx:alpine
     ports:
       - '3000:80'
@@ -16,6 +18,8 @@ services:
       context: ./back
       dockerfile: dockerfile
     image: camagru_back_image
+    env_file:
+      - .env
     ports:
       - '4000:4000'
     volumes:
@@ -23,7 +27,8 @@ services:
     networks:
       - camagru-network
 
-  postgres:
+  db:
+    container_name: db
     image: postgres:13-alpine
     ports:
       - 5432:5432
@@ -31,6 +36,15 @@ services:
       - .env
     volumes:
       - postgres:/var/lib/postgresql/data
+    networks:
+      - camagru-network
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    container_name: adminer
     networks:
       - camagru-network
 

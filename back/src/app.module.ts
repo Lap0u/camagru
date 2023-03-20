@@ -3,6 +3,10 @@ import { UsersModule } from './users/users.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './users/users.entity';
+import { CommentsModule } from './comments/comments.module';
+import { PicturesModule } from './pictures/pictures.module';
+import { Comments } from './comments/comments.entity';
+import { Pictures } from './pictures/pictures.entity';
 
 @Module({
   imports: [
@@ -16,12 +20,14 @@ import { User } from './users/users.entity';
         username: process.env.POSTGRES_USER,
         password: process.env.POSTGRES_PASSWORD,
         database: process.env.POSTGRES_DB,
-        entities: [User],
+        entities: [User, Comments, Pictures],
         synchronize: true,
       }),
       inject: [ConfigService],
     }),
     UsersModule,
+    CommentsModule,
+    PicturesModule,
   ],
   controllers: [],
   providers: [],

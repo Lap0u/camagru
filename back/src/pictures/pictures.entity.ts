@@ -1,4 +1,10 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { User } from 'src/users/users.entity';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class Pictures {
@@ -6,11 +12,23 @@ export class Pictures {
   id: number;
 
   @Column()
-  firstName: string;
+  description: string;
 
   @Column()
-  lastName: string;
+  author: string;
 
-  @Column({ default: true })
-  isActive: boolean;
+  @CreateDateColumn()
+  postedAt: Date;
+
+  @Column({ type: 'bytea' })
+  data: Uint8Array;
+
+  // @Column()
+  // image: Image; //le contenu de l'image
+
+  // @Column()
+  // likes: User[]; //les utilisateurs qui ont liké
+
+  // @Column()
+  // comments: Comment[]; //les commentaires
 }

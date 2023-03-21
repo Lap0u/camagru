@@ -1,4 +1,9 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class Comments {
@@ -6,11 +11,11 @@ export class Comments {
   id: number;
 
   @Column()
-  firstName: string;
+  author: string;
 
   @Column()
-  lastName: string;
+  content: string;
 
-  @Column({ default: true })
-  isActive: boolean;
+  @CreateDateColumn()
+  postedAt: Date;
 }

@@ -1,3 +1,5 @@
+/* default */
+
 :root {
   --main-black: #0c1f38;
   --main-orange: #e65401;
@@ -34,6 +36,8 @@
   color: var(--main-orange);
 }
 
+/************/
+
 .main-div {
   display: flex;
   flex-direction: row;
@@ -41,16 +45,34 @@
   margin: 5rem;
 }
 
-.gallery-div {
+/* gallery */
+
+.gallery-side {
   display: flex;
+  flex-direction: column;
+  width: calc(9.375rem * 2 + 4rem);
 }
+
+.gallery-header {
+  margin: auto;
+}
+
+.gallery-images {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.gallery-img {
+  width: 9.375rem;
+  height: 9.375rem;
+  margin: 1rem;
+}
+
+/* webcam */
 
 .webcam-div {
   display: flex;
-}
-
-.add-images-div {
-  display: flex;
+  width: 40.625rem;
 }
 
 .webcam-button-flex {
@@ -63,8 +85,8 @@ video {
 }
 
 video[poster] {
-  width: 650px;
-  height: 650px;
+  width: 40.625rem;
+  height: 40.625rem;
 }
 
 .webcam-footer-buttons {
@@ -72,4 +94,10 @@ video[poster] {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+}
+
+/* image edit */
+
+.add-images-div {
+  display: flex;
 }

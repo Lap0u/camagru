@@ -2,6 +2,18 @@ document.getElementById('webcam-button').addEventListener('click', getWebcam)
 document.getElementById('upload-image').addEventListener('click', uploadImage)
 document.getElementById('input_file').addEventListener('change', changeImage)
 
+createLastUploadGallery()
+
+function createLastUploadGallery () {
+  const gallery = document.getElementById('gallery-images')
+  for (i = 0; i < 8; i++) {
+    const img = document.createElement('img')
+    img.src = "../assets/empty_img.jpg"
+    img.className = "gallery-img"
+    gallery.appendChild(img)
+  }
+}
+
 function changeImage () {
   const input = document.getElementById('input_file')
   const video = document.getElementById('webcam-screen')

@@ -33,3 +33,34 @@
 .navbar-container a:focus {
   color: var(--main-orange);
 }
+
+.main-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 5rem;
+}
+
+.gallery-div {
+  display: flex;
+}
+
+.webcam-div {
+  display: flex;
+}
+
+.add-images-div {
+  display: flex;
+}
+
+.webcam-button-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.webcam-footer-buttons {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}

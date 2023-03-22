@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="./css/main.css">
   <link rel="stylesheet" href="./css/camagru.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+  <script src="./script/camagru.js" defer></script>
   <title>Camagru</title>
 </head>
 
@@ -20,6 +21,25 @@
       <a href="gallery.html"><i class="fa-regular fa-image fa-xl"></i></a>
       <a href="account.html"><i class="fa-regular fa-user fa-xl"></i></a>
       <a href="index.html"><i class="fa-solid fa-person-running fa-xl"></i></a>
+    </div>
+  </div>
+  <div class="main-div">
+    <div class="gallery-div">
+      <div>Here comes the gallery preview</div>
+    </div>
+    <div class="webcam-div">
+      <div class="webcam-button-flex">
+        <video poster='./assets/empty_img.jpg' id="webcam-screen"></video>
+        <div class="webcam-footer-buttons">
+          <button class="webcam-button" id="webcam-button">Launch Webcam</button>
+          <input type="file" name="" id='input_file' hidden>
+          <button id='upload-image'>Upload Image</button>
+        </div>
+
+      </div>
+    </div>
+    <div class="add-images-div">
+      <div>Edit your photo</div>
     </div>
   </div>
 </body>

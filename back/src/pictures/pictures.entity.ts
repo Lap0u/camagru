@@ -24,9 +24,6 @@ export class Pictures {
   data: Uint8Array;
 
   // @Column()
-  // image: Image; //le contenu de l'image
-
-  // @Column()
   // likes: User[]; //les utilisateurs qui ont liké
 
   // @Column()

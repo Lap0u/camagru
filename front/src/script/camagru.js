@@ -21,6 +21,7 @@ function changeImage () {
 }
 
 function uploadImage () {
+  document.getElementById('input_file').value = null
   document.getElementById('input_file').click()
 }
 

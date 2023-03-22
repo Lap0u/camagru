@@ -58,6 +58,15 @@
   flex-direction: column;
 }
 
+video {
+  object-fit: cover;
+}
+
+video[poster] {
+  width: 650px;
+  height: 650px;
+}
+
 .webcam-footer-buttons {
   margin-top: 1rem;
   display: flex;

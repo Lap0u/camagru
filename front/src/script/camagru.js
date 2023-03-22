@@ -5,17 +5,19 @@ document.getElementById('input_file').addEventListener('change', changeImage)
 function changeImage () {
   const input = document.getElementById('input_file')
   const video = document.getElementById('webcam-screen')
+  const file = input.files[0]
+  console.log('changeImage()')
   video.srcObject = null
   //read the file and replace the poster
+  if (file['type'].split('/')[0] != 'image') {
+    alert('Please select an image file')
+    return
+  }
   var fr = new FileReader()
   fr.onload = function (e) {
-    var img = new Image()
-    img.src = e.target.result
-
-    fr.result.setAttribute('style', 'width:auto;')
     video.poster = fr.result
   }
-  fr.readAsDataURL(input.files[0])
+  fr.readAsDataURL(file)
 }
 
 function uploadImage () {

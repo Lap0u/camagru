@@ -75,13 +75,15 @@
   width: 40.625rem;
 }
 
-.webcam-button-flex {
+.webcam-flex {
   display: flex;
   flex-direction: column;
 }
 
 video {
   object-fit: contain;
+  border: 2px solid var(--main-black);
+  background-color: white;
 }
 
 video[poster] {
@@ -89,13 +91,40 @@ video[poster] {
   height: 40.625rem;
 }
 
-.webcam-footer-buttons {
+.webcam-footer {
+  display: flex;
+  flex-direction: column;
   margin-top: 1rem;
+}
+
+.webcam-footer button {
+  padding: 0.5rem;
+  border: none;
+  border-bottom: 1px solid var(--main-orange);
+  background-color: transparent;
+  color: var(--main-orange);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.webcam-footer button:focus,
+.webcam-footer button:hover {
+  outline: none;
+  border-bottom: 1px solid white;
+  color: white;
+  cursor: pointer;
+}
+
+.webcam-footer-buttons-flex {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
 
+.save-picture-button {
+  margin-top: 1rem;
+  text-align: center;
+}
 /* image edit */
 
 .add-images-div {

@@ -29,14 +29,18 @@
       <div class="gallery-images" id="gallery-images"></div>
     </div>
     <div class="webcam-div">
-      <div class="webcam-button-flex">
+      <div class="webcam-flex">
         <video poster='./assets/empty_img.jpg' id="webcam-screen"></video>
-        <div class="webcam-footer-buttons">
-          <button class="webcam-button" id="webcam-button">Launch Webcam</button>
-          <input accept="image/*" type="file" name="" id='input_file' hidden>
-          <button id='upload-image'>Upload Image</button>
+        <div class="webcam-footer">
+          <div class="webcam-footer-buttons-flex">
+            <button class="webcam-button" id="webcam-button">Launch Webcam</button>
+            <input accept="image/*" type="file" name="" id='input_file' hidden>
+            <button id='upload-image'>Upload Image</button>
+          </div>
+          <div class="save-picture-button">
+            <button id="save-picture">Save Picture</button>
+          </div>
         </div>
-
       </div>
     </div>
     <div class="add-images-div">

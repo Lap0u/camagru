@@ -2,6 +2,7 @@ document.getElementById('webcam-button').addEventListener('click', getWebcam)
 document.getElementById('upload-image').addEventListener('click', uploadImage)
 document.getElementById('save-picture').addEventListener('click', savePicture)
 document.getElementById('input_file').addEventListener('change', changeImage)
+document.getElementById('foreground-image').addEventListener('mousedown', dragImage)
 
 const images = [
   '../assets/edits/chowchow.png',
@@ -13,6 +14,43 @@ const images = [
 
 createLastUploadGallery()
 createEditGallery()
+
+function dragImage (e) {
+  poster = document.getElementById('webcam-screen')
+  e.preventDefault()
+  startPosX = e.clientX
+  startPosY = e.clientY
+
+  document.addEventListener('mousemove', mouseMove)
+
+  document.addEventListener('mouseup', function () {
+    document.removeEventListener('mousemove', mouseMove)
+  })
+}
+
+function mouseMove (e) {
+  addedImage = document.getElementById('foreground-image')
+  poster = document.getElementById('webcam-screen').getBoundingClientRect()
+  console.log('poster', poster)
+  // calculate the new position
+  var x = e.clientX - poster.left //x position within the element.
+  var y = e.clientY - poster.top
+  console.log('x', x)
+  console.log('y', y)
+  if (x < 0 || y < 0 || x > poster.width || y > poster.height)
+    return
+
+  newPosX = startPosX - e.clientX
+  newPosY = startPosY - e.clientY
+
+  // with each move we also want to update the start X and Y
+  startPosX = e.clientX
+  startPosY = e.clientY
+
+  // set the element's new position:
+  addedImage.style.top = (addedImage.offsetTop - newPosY) + "px"
+  addedImage.style.left = (addedImage.offsetLeft - newPosX) + "px"
+}
 
 function savePicture () {
   console.log('savePicture()')

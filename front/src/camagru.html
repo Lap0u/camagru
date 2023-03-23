@@ -31,6 +31,8 @@
     <div class="webcam-div">
       <div class="webcam-flex">
         <video poster='./assets/empty_img.jpg' id="webcam-screen"></video>
+        <img hidden src="./assets/edits/ane.png" class="foreground-image" id='foreground-image'
+          alt="added foregroundimage">
         <div class="webcam-footer">
           <div class="webcam-footer-buttons-flex">
             <button class="webcam-button" id="webcam-button">Launch Webcam</button>
@@ -43,8 +45,8 @@
         </div>
       </div>
     </div>
-    <div class="add-images-div">
-      <div>Edit your photo</div>
+    <div class="add-images-div" id="add-images">
+      <div>Select an image to insert</div>
     </div>
   </div>
 </body>

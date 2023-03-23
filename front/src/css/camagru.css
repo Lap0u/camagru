@@ -50,7 +50,7 @@
 .gallery-side {
   display: flex;
   flex-direction: column;
-  width: calc(9.375rem * 2 + 4rem);
+  width: calc(9.375rem * 2 + 4rem + 0.5rem);
 }
 
 .gallery-header {
@@ -66,6 +66,12 @@
   width: 9.375rem;
   height: 9.375rem;
   margin: 1rem;
+  border: 0.125rem solid var(--main-orange);
+}
+
+.gallery-img:hover {
+  border: 0.125rem solid white;
+  cursor: pointer;
 }
 
 /* webcam */
@@ -78,17 +84,27 @@
 .webcam-flex {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 video {
   object-fit: contain;
-  border: 2px solid var(--main-black);
+  border: 0.125rem solid var(--main-orange);
   background-color: white;
 }
 
 video[poster] {
   width: 40.625rem;
   height: 40.625rem;
+}
+
+.foreground-image {
+  width: 12.5rem;
+  height: 12.5rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .webcam-footer {
@@ -100,7 +116,7 @@ video[poster] {
 .webcam-footer button {
   padding: 0.5rem;
   border: none;
-  border-bottom: 1px solid var(--main-orange);
+  border-bottom: 0.063rem solid var(--main-orange);
   background-color: transparent;
   color: var(--main-orange);
   font-weight: 700;
@@ -110,7 +126,7 @@ video[poster] {
 .webcam-footer button:focus,
 .webcam-footer button:hover {
   outline: none;
-  border-bottom: 1px solid white;
+  border-bottom: 0.063rem solid white;
   color: white;
   cursor: pointer;
 }
@@ -129,4 +145,19 @@ video[poster] {
 
 .add-images-div {
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.add-img {
+  width: 6.25rem;
+  height: 6.25rem;
+  padding: 1rem;
+  border: 0.125rem solid var(--main-orange);
+  margin: 0 auto;
+}
+
+.add-img:hover {
+  border: 0.125rem solid white;
+  cursor: pointer;
 }

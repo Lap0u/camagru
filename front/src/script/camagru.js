@@ -3,11 +3,32 @@ document.getElementById('upload-image').addEventListener('click', uploadImage)
 document.getElementById('save-picture').addEventListener('click', savePicture)
 document.getElementById('input_file').addEventListener('change', changeImage)
 
+const images = [
+  '../assets/edits/chowchow.png',
+  '../assets/edits/ane.png',
+  '../assets/edits/ecureuil.png',
+  '../assets/edits/koala.png',
+  '../assets/edits/loutre.png',
+]
+
 createLastUploadGallery()
 createEditGallery()
 
 function savePicture () {
   console.log('savePicture()')
+}
+
+function mainImage (event) {
+  const image = document.getElementById('foreground-image')
+  image.removeAttribute('hidden')
+  if (event.target.src === image.src) {
+    image.setAttribute('hidden', true)
+  }
+  else {
+    image.src = event.target.src
+  }
+  console.log('event', event)
+  console.log('mainImage()')
 }
 
 function createLastUploadGallery () {
@@ -21,48 +42,56 @@ function createLastUploadGallery () {
 }
 
 function createEditGallery () {
+  const gallery = document.getElementById('add-images')
+  for (img of images) {
+    const imgElement = document.createElement('img')
+    imgElement.src = img
+    imgElement.className = "add-img"
+    imgElement.addEventListener('click', mainImage)
+    gallery.appendChild(imgElement)
+  }
+}
 
+function changeImage () {
+  const input = document.getElementById('input_file')
+  const video = document.getElementById('webcam-screen')
+  const file = input.files[0]
+  console.log('changeImage()')
+  video.srcObject = null
+  //read the file and replace the poster
+  if (file['type'].split('/')[0] != 'image') {
+    alert('Please select an image file')
+    return
+  }
+  var fr = new FileReader()
+  fr.onload = function (e) {
+    video.poster = fr.result
+  }
+  fr.readAsDataURL(file)
+}
 
-  function changeImage () {
-    const input = document.getElementById('input_file')
+function uploadImage () {
+  document.getElementById('input_file').value = null
+  document.getElementById('input_file').click()
+}
+
+async function getWebcam () {
+  let stream = null
+  console.log('getWebcam()')
+
+  try {
+    stream = await navigator.mediaDevices.getUserMedia({
+      audio: false,
+      video: {
+        facingMode: 'user',
+        width: { ideal: 650 },
+        height: { ideal: 650 }
+      }
+    })
     const video = document.getElementById('webcam-screen')
-    const file = input.files[0]
-    console.log('changeImage()')
-    video.srcObject = null
-    //read the file and replace the poster
-    if (file['type'].split('/')[0] != 'image') {
-      alert('Please select an image file')
-      return
-    }
-    var fr = new FileReader()
-    fr.onload = function (e) {
-      video.poster = fr.result
-    }
-    fr.readAsDataURL(file)
+    video.srcObject = stream
+    video.onloadedmetadata = () => video.play()
+  } catch (err) {
+    alert('Please allow access to your webcam or upload a picture')
   }
-
-  function uploadImage () {
-    document.getElementById('input_file').value = null
-    document.getElementById('input_file').click()
-  }
-
-  async function getWebcam () {
-    let stream = null
-    console.log('getWebcam()')
-
-    try {
-      stream = await navigator.mediaDevices.getUserMedia({
-        audio: false,
-        video: {
-          facingMode: 'user',
-          width: { ideal: 650 },
-          height: { ideal: 650 }
-        }
-      })
-      const video = document.getElementById('webcam-screen')
-      video.srcObject = stream
-      video.onloadedmetadata = () => video.play()
-    } catch (err) {
-      alert('Please allow access to your webcam or upload a picture')
-    }
-  }
+}

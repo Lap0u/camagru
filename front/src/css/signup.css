@@ -24,7 +24,7 @@
   margin: 1rem 0rem;
   padding: 1rem;
   border: none;
-  border-bottom: 1px solid var(--main-orange);
+  border-bottom: 0.063rem solid var(--main-orange);
   background-color: transparent;
   color: var(--main-orange);
   font-size: 1.5rem;
@@ -35,8 +35,8 @@
   background-color: white;
   color: var(--main-blue);
   font-size: 1.5rem;
-  border: 2px solid var(--main-yellow);
-  border-radius: 10px;
+  border: 0.125rem solid var(--main-yellow);
+  border-radius: 0.625rem;
 }
 
 .forms button:hover,
@@ -45,6 +45,6 @@
 .forms input:focus {
   background-color: var(--main-yellow);
   color: var(--main-blue);
-  border-radius: 10px;
+  border-radius: 0.625rem;
   outline: none;
 }

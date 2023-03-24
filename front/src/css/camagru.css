@@ -87,9 +87,16 @@
   position: relative;
 }
 
+.webcam {
+  position: relative;
+  overflow: hidden;
+  border: 0.125rem solid var(--main-orange);
+  width: 40.625rem;
+  height: 40.625rem;
+}
+
 video {
   object-fit: contain;
-  border: 0.125rem solid var(--main-orange);
   background-color: white;
 }
 

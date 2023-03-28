@@ -20,21 +20,21 @@ body {
 .background-left {
   background-color: var(--main-yellow);
   position: absolute;
-  width: 50rem;
-  height: 80rem;
+  width: 800px;
+  height: 1280px;
   z-index: -1;
   rotate: -15deg;
-  top: -10rem;
-  left: -10rem;
+  top: -160px;
+  left: -160px;
 }
 
 .background-right {
   background-color: var(--main-blue);
   position: absolute;
-  width: 80rem;
-  height: 80rem;
+  width: 1280px;
+  height: 1280px;
   z-index: -2;
   rotate: -15deg;
-  top: -12rem;
-  right: -10rem;
+  top: -192px;
+  right: -160px;
 }

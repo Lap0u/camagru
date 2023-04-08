@@ -2,11 +2,11 @@ import { Module } from '@nestjs/common';
 import { UsersModule } from './users/users.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './users/users.entity';
+import { User } from './entities/users.entity';
 import { CommentsModule } from './comments/comments.module';
 import { PicturesModule } from './pictures/pictures.module';
-import { Comments } from './comments/comments.entity';
-import { Pictures } from './pictures/pictures.entity';
+import { Comments } from './entities/comments.entity';
+import { Pictures } from './entities/pictures.entity';
 
 @Module({
   imports: [

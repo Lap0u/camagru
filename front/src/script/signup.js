@@ -31,6 +31,32 @@ function checkPassword (password, passwordConfirm) {
   return true
 }
 
+function handleFetchError (err) {
+  console.log(err)
+  alert('Error: ' + err)
+}
+
+function postNewUser (newUser) {
+  console.log("post user")
+  fetch('http://localhost:4000/users', {
+    method: 'POST',
+    body: JSON.stringify(newUser),
+    headers: { 'content-type': 'application/json' },
+  })
+    .then(response => response.json())
+    // .then(window.location.href = "./camagru.html")
+    .catch(err => handleFetchError(err))
+}
+
+function createUser (username, email, password) {
+  let newUser = {
+    username: username,
+    email: email,
+    password: password
+  }
+  return newUser
+}
+
 function checkSignup () {
   let username = document.getElementById('username').value
   let email = document.getElementById('email').value
@@ -41,9 +67,12 @@ function checkSignup () {
     alert('Please fill all fields')
     return
   }
-  if (checkUserName(username) === false || checkEmail(email) === false || checkPassword(password, passwordConfirm) === false)
+  if (checkUserName(username) === false || checkEmail(email) === false || checkPassword(password, passwordConfirm) === false) {
+    console.log('One field is not matching the requirements')
     return
-  window.location.href = "./camagru.html"
+  }
+  let newUser = createUser(username, email, password)
+  postNewUser(newUser)
 }
 
 document.getElementById("form-signup").addEventListener('submit', function () { checkSignup() })

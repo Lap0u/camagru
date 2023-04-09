@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { PicturesController } from './controllers/pictures/pictures.controller';
-import { PicturesService } from './services/pictures/pictures.service';
+import { PicturesController } from './pictures.controller';
+import { PicturesService } from './pictures.service';
 
 @Module({
   controllers: [PicturesController],

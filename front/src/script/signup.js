@@ -10,7 +10,7 @@ function checkUserName (username) {
 function checkEmail (email) {
   let regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/
   if (regex.test(email) === false) {
-    alert('Invalid email')
+    alert('The email address must contain only alphanumeric characters, periods, underscores, and hyphens before the @ symbol, and the domain name must have at least two characters before the period and between two to four characters after the period.')
     return false
   }
   return true
@@ -31,6 +31,7 @@ function checkPassword (password, passwordConfirm) {
 
 async function postNewUser (newUser) {
   console.log("post user")
+  //doit send le password confirm
   fetch('http://localhost:4000/users', {
     method: 'POST',
     body: JSON.stringify(newUser),
@@ -46,7 +47,7 @@ async function postNewUser (newUser) {
       }
     })
     .then(user => console.log(user))
-    // .then(window.location.href = "./camagru.html")
+    .then(window.location.href = "./camagru.html")
     .catch(error => {
       alert(error)
     })
@@ -62,13 +63,18 @@ function createUser (username, email, password) {
 }
 
 function checkSignup () {
+
   let username = document.getElementById('username').value
   let email = document.getElementById('email').value
   let password = document.getElementById('password').value
   let passwordConfirm = document.getElementById('password-confirm').value
 
+  if (checkUserName(username) === false || checkEmail(email) === false || checkPassword(password, passwordConfirm) === false) { return }
   let newUser = createUser(username, email, password)
-  postNewUser(newUser)
+  postNewUser(newUser, passwordConfirm)
 }
 
-document.getElementById("form-signup").addEventListener('submit', function () { checkSignup() })
+document.getElementById("form-signup").addEventListener('submit', event => {
+  event.preventDefault()
+  checkSignup()
+})

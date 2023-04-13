@@ -10,7 +10,7 @@ export function usernameErrors(username: string) {
 export function emailErrors(email: string) {
   let regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
   if (!email)
-    return ' The email address must contain only alphanumeric characters, periods, underscores, and hyphens before the @ symbol, and the domain name must have at least two characters before the period and between two to four characters after the period.';
+    return 'The email address must contain only alphanumeric characters, periods, underscores, and hyphens before the @ symbol, and the domain name must have at least two characters before the period and between two to four characters after the period.';
   if (regex.test(email) === false) return `invalid email`;
   return '';
 }

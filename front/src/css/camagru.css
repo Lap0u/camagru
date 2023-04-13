@@ -22,12 +22,13 @@
 .nav-right-flex {
   display: flex;
   justify-content: space-between;
-  width: 10%;
+  width: 15%;
   margin-left: auto;
   margin-right: 1rem;
 }
 
-.navbar-container i {
+.navbar-container i,
+.nav-username {
   line-height: 2.2rem;
 }
 

@@ -18,13 +18,10 @@
   <div class="signup-form">
     <h1>Sign up</h1>
     <form target="_blank" class="forms" id="form-signup">
-      <input id="username" type="text" name="username" placeholder="Username" required minlength="3" maxlength="10">
+      <input id="username" type="text" name="username" placeholder="Username" required>
       <input id="email" type="email" name="email" placeholder="Email" required>
-      <!-- pattern checks for One upper one lower One number and 8 characters  -->
-      <input id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" type="password" name="password"
-        placeholder="Password" required minlength="8">
-      <input id="password-confirm" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" type="password" name="password-repeat"
-        placeholder="Repeat password" required>
+      <input id="password" type="password" name="password" placeholder="Password" required>
+      <input id="password-confirm" type="password" name="password-repeat" placeholder="Repeat password" required>
       <input type="submit" value="Create account">
     </form>
   </div>

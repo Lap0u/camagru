@@ -25,7 +25,7 @@
   padding: 1rem;
   border: none;
   border-bottom: 0.063rem solid var(--main-orange);
-  background-color: transparent;
+  /* background-color: transparent; */
   color: var(--main-orange);
   font-size: 1.5rem;
   font-weight: 700;
@@ -40,8 +40,6 @@
 }
 
 .forms button:hover,
-.forms button:focus,
-.forms input:hover,
 .forms input:focus {
   background-color: var(--main-yellow);
   color: var(--main-blue);

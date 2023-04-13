@@ -4,7 +4,6 @@ function checkUserName (username) {
     alert('Username must be between 4 and 10 characters long and can contain only letters and numbers')
     return false
   }
-  //check doublon avec le back
   return true
 }
 
@@ -14,7 +13,6 @@ function checkEmail (email) {
     alert('Invalid email')
     return false
   }
-  //check doublon avec le back
   return true
 }
 
@@ -31,21 +29,27 @@ function checkPassword (password, passwordConfirm) {
   return true
 }
 
-function handleFetchError (err) {
-  console.log(err)
-  alert('Error: ' + err)
-}
-
-function postNewUser (newUser) {
+async function postNewUser (newUser) {
   console.log("post user")
   fetch('http://localhost:4000/users', {
     method: 'POST',
     body: JSON.stringify(newUser),
     headers: { 'content-type': 'application/json' },
   })
-    .then(response => response.json())
+    .then(response => {
+      if (response.ok === true) {
+        return response.json()
+      } else if (response.status === 400) {
+        return response.json().then(data => {
+          throw new Error(data.message)
+        })
+      }
+    })
+    .then(user => console.log(user))
     // .then(window.location.href = "./camagru.html")
-    .catch(err => handleFetchError(err))
+    .catch(error => {
+      alert(error)
+    })
 }
 
 function createUser (username, email, password) {
@@ -63,14 +67,6 @@ function checkSignup () {
   let password = document.getElementById('password').value
   let passwordConfirm = document.getElementById('password-confirm').value
 
-  if (username === '' || email === '' || password === '' || passwordConfirm === '') {
-    alert('Please fill all fields')
-    return
-  }
-  if (checkUserName(username) === false || checkEmail(email) === false || checkPassword(password, passwordConfirm) === false) {
-    console.log('One field is not matching the requirements')
-    return
-  }
   let newUser = createUser(username, email, password)
   postNewUser(newUser)
 }

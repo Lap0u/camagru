@@ -1,7 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/entities/users.entity';
 import { Repository } from 'typeorm';
+import { emailErrors, passwordErrors, usernameErrors } from './users.utils';
 
 @Injectable()
 export class UsersService {
@@ -10,9 +11,33 @@ export class UsersService {
     private readonly usersRepository: Repository<User>,
   ) {}
 
+  private checkValidUser(user: User, errors: string[]): boolean {
+    let err = '';
+
+    err = usernameErrors(user.username);
+    if (err) errors.push(err);
+    err = emailErrors(user.email);
+    if (err) errors.push(err);
+    err = passwordErrors(user.password);
+    if (err) errors.push(err);
+    console.log('validUserErrors', errors);
+    console.log('errors.length', errors.length);
+    if (errors.length !== 0) return false;
+    console.log('ret true');
+    return true;
+  }
+
   async createUser(userData: Partial<User>): Promise<User> {
+    console.log('createUser', userData);
     const newUser = this.usersRepository.create(userData);
-    return this.usersRepository.save(newUser);
+    const errors: string[] = [];
+    if (this.checkValidUser(newUser, errors) === false) {
+      console.log('bad req sent');
+      throw new BadRequestException({ message: errors });
+    } else {
+      console.log('success');
+      return this.usersRepository.save(newUser);
+    }
   }
 
   findAll(): Promise<User[]> {

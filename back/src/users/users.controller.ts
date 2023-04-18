@@ -20,4 +20,9 @@ export class UsersController {
   updateUser(@Param('id') id: number, @Body() user: User): User {
     return this.usersService.updateUser(id, user);
   }
+
+  @Post('/login')
+  async login(@Body() user: Partial<User>): Promise<User> {
+    return this.usersService.checkLogin(user);
+  }
 }

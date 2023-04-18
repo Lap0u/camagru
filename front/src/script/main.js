@@ -1,7 +1,7 @@
 async function verifyCredentials (newUser) {
   console.log("post user")
   //doit send le password confirm
-  fetch('http://localhost:4000/login', {
+  fetch('http://localhost:4000/users/login', {
     method: 'POST',
     body: JSON.stringify(newUser),
     headers: { 'content-type': 'application/json' },
@@ -16,7 +16,7 @@ async function verifyCredentials (newUser) {
       }
     })
     .then(user => console.log(user))
-    // .then(window.location.href = "./camagru.html")
+    .then(window.location.href = "./camagru.html")
     .catch(error => {
       alert(error)
     })

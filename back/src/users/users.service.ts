@@ -40,6 +40,22 @@ export class UsersService {
     }
   }
 
+  async checkLogin(user: Partial<User>): Promise<User> {
+    const errors: string[] = [];
+    const loggedInUser = await this.usersRepository.findOneBy({
+      username: user.username,
+    });
+    if (loggedInUser === null) {
+      errors.push('Username not found');
+      throw new BadRequestException({ message: errors });
+    }
+    if (loggedInUser.password !== user.password) {
+      errors.push('Incorrect password');
+      throw new BadRequestException({ message: errors });
+    }
+    return loggedInUser;
+  }
+
   findAll(): Promise<User[]> {
     return this.usersRepository.find();
   }

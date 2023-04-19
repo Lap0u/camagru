@@ -46,8 +46,10 @@ async function postNewUser (newUser) {
         })
       }
     })
-    .then(user => console.log(user))
-    .then(window.location.href = "./camagru.html")
+    .then(user => {
+      console.log(user)
+      window.location.href = "./camagru.html"
+    })
     .catch(error => {
       alert(error)
     })

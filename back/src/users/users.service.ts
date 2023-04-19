@@ -11,49 +11,58 @@ export class UsersService {
     private readonly usersRepository: Repository<User>,
   ) {}
 
-  private checkValidUser(user: User, errors: string[]): boolean {
+  async checkValidUser(user: User, errors: string[]): Promise<boolean> {
     let err = '';
 
     err = usernameErrors(user.username);
     if (err) errors.push(err);
+    else if (
+      (await this.usersRepository.findOne({
+        where: { username: user.username },
+      })) !== null
+    )
+      errors.push('Username already exists');
     err = emailErrors(user.email);
     if (err) errors.push(err);
+    else if (
+      (await this.usersRepository.findOne({ where: { email: user.email } })) !==
+      null
+    )
+      errors.push('Email is already in use');
     err = passwordErrors(user.password);
     if (err) errors.push(err);
-    console.log('validUserErrors', errors);
-    console.log('errors.length', errors.length);
     if (errors.length !== 0) return false;
-    console.log('ret true');
     return true;
   }
 
   async createUser(userData: Partial<User>): Promise<User> {
-    console.log('createUser', userData);
     const newUser = this.usersRepository.create(userData);
     const errors: string[] = [];
-    if (this.checkValidUser(newUser, errors) === false) {
-      console.log('bad req sent');
+    console.log('newUser', newUser);
+    if ((await this.checkValidUser(newUser, errors)) === false) {
+      console.log('badReq', errors);
       throw new BadRequestException({ message: errors });
     } else {
-      console.log('success');
+      console.log('User successfully created', newUser);
       return this.usersRepository.save(newUser);
     }
   }
 
   async checkLogin(user: Partial<User>): Promise<User> {
     const errors: string[] = [];
-    const loggedInUser = await this.usersRepository.findOneBy({
-      username: user.username,
+    const loggedInUser = await this.usersRepository.findOne({
+      where: {
+        username: user.username,
+      },
     });
+    console.log(loggedInUser, 'loggedInUser');
     if (loggedInUser === null) {
       errors.push('Username not found');
       throw new BadRequestException({ message: errors });
-    }
-    if (loggedInUser.password !== user.password) {
+    } else if (loggedInUser.password !== user.password) {
       errors.push('Incorrect password');
       throw new BadRequestException({ message: errors });
-    }
-    return loggedInUser;
+    } else return loggedInUser;
   }
 
   findAll(): Promise<User[]> {

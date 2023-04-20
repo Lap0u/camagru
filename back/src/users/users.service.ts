@@ -1,5 +1,11 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  forwardRef,
+  Inject,
+  Injectable,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { AuthService } from 'src/auth/auth.service';
 import { User } from 'src/entities/users.entity';
 import { Repository } from 'typeorm';
 import { emailErrors, passwordErrors, usernameErrors } from './users.utils';
@@ -9,6 +15,8 @@ export class UsersService {
   constructor(
     @InjectRepository(User)
     private readonly usersRepository: Repository<User>,
+    @Inject(forwardRef(() => AuthService))
+    private readonly authService: AuthService,
   ) {}
 
   async checkValidUser(user: User, errors: string[]): Promise<boolean> {
@@ -43,8 +51,14 @@ export class UsersService {
       console.log('badReq', errors);
       throw new BadRequestException({ message: errors });
     } else {
+      await this.usersRepository.save(newUser);
       console.log('User successfully created', newUser);
-      return this.usersRepository.save(newUser);
+      const token = await this.authService.signIn(
+        newUser.username,
+        newUser.password,
+      );
+      newUser.token = token;
+      return newUser;
     }
   }
 
@@ -71,5 +85,9 @@ export class UsersService {
 
   updateUser(id: number, user: User): User {
     return user;
+  }
+
+  async findOne(username: string): Promise<User | undefined> {
+    return this.usersRepository.findOne({ where: { username: username } });
   }
 }

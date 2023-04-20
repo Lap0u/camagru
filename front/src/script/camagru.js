@@ -3,6 +3,7 @@ document.getElementById('upload-image').addEventListener('click', uploadImage)
 document.getElementById('save-picture').addEventListener('click', savePicture)
 document.getElementById('input_file').addEventListener('change', changeImage)
 document.getElementById('foreground-image').addEventListener('mousedown', dragImage)
+document.getElementById('logout-icon').addEventListener('click', logout)
 
 const images = [
   '../assets/edits/chowchow.png',
@@ -14,6 +15,18 @@ const images = [
 
 createLastUploadGallery()
 createEditGallery()
+checkLogin()
+
+function logout () {
+  localStorage.clear()
+  window.location.href = "./index.html"
+}
+
+function checkLogin () {
+  console.log('checkLogin()')
+  const e = document.getElementById('username-div')
+  e.innerHTML = "Hello " + localStorage.getItem('username')
+}
 
 function dragImage (e) {
   poster = document.getElementById('webcam-screen')

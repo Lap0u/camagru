@@ -1,7 +1,7 @@
 async function verifyCredentials (newUser) {
   console.log("post user")
   //doit send le password confirm
-  fetch('http://localhost:4000/users/login', {
+  fetch('http://localhost:4000/auth/login', {
     method: 'POST',
     body: JSON.stringify(newUser),
     headers: { 'content-type': 'application/json' },
@@ -17,6 +17,8 @@ async function verifyCredentials (newUser) {
     })
     .then(user => {
       console.log(user)
+      localStorage.setItem('username', user.username)
+      localStorage.setItem('token', user.token)
       window.location.href = "./camagru.html"
     })
     .catch(error => {

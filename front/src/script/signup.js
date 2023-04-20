@@ -48,6 +48,8 @@ async function postNewUser (newUser) {
     })
     .then(user => {
       console.log(user)
+      localStorage.setItem('username', user.username)
+      localStorage.setItem('token', user.token)
       window.location.href = "./camagru.html"
     })
     .catch(error => {

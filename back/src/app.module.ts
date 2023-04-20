@@ -7,6 +7,7 @@ import { CommentsModule } from './comments/comments.module';
 import { PicturesModule } from './pictures/pictures.module';
 import { Comments } from './entities/comments.entity';
 import { Pictures } from './entities/pictures.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { Pictures } from './entities/pictures.entity';
     UsersModule,
     CommentsModule,
     PicturesModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],

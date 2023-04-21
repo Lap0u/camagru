@@ -57,7 +57,8 @@ export class UsersService {
         newUser.username,
         newUser.password,
       );
-      newUser.token = token;
+      newUser.token = token.access_token;
+      await this.usersRepository.save(newUser);
       return newUser;
     }
   }

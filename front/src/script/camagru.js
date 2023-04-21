@@ -23,6 +23,7 @@ function logout () {
 }
 
 function checkLogin () {
+
   console.log('checkLogin()')
   const e = document.getElementById('username-div')
   e.innerHTML = "Hello " + localStorage.getItem('username')
